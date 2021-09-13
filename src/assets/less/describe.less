@@ -1,0 +1,35 @@
+.describe {
+    border-left: solid 2px darkgoldenrod;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-basis: 50%;
+
+    &__title {
+        color: darkgoldenrod;
+        margin-bottom: 10px;
+    }
+
+    &__content {
+        width: 20rem;
+        margin-bottom: 10px;
+
+        & div {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+    }
+
+    .functions {
+        width: 18rem;
+        display: flex;
+        justify-content: space-between;
+
+
+        &--opacity {
+            opacity: 0.4;
+        }
+    }
+}

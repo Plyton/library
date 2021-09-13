@@ -15,6 +15,7 @@
         @sortByTitle="sortBooks"
         @resetSorting="resetBooks"
         @addItem="addBook"
+        :isMobile="isMobile"
         :shelfNumber="'1'"
       />
     </div>
@@ -32,6 +33,7 @@ export default {
   props: ["item"],
   data() {
     return {
+      isMobile: false,
       defaultShelf: [],
       shelf: this.item
     };
@@ -99,8 +101,17 @@ export default {
       this.$parent.formOpen = true;
     }
   },
+  created() {
+    if (process.browser) {
+      window.addEventListener("resize", this.onResize);
+      this.isMobile = document.documentElement.clientWidth > 600 ? false : true;
+    }
+  },
   mounted() {
     this.defaultShelf = [...this.shelf];
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.onResize);
   }
 };
 </script>

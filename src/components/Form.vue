@@ -11,7 +11,7 @@
           <input
             type="text"
             name="autor"
-            maxlength="20"
+            maxlength="25"
             placeholder="введите автора произведения"
             :value="bookInformation.autor"
             @focus="hasError.editError = false, hasError.addError = false"
@@ -24,7 +24,7 @@
           <input
             type="text"
             name="title"
-            maxlength="30"
+            maxlength="20"
             placeholder="введите название произведения"
             :value="bookInformation.title"
             @focus="hasError.editError = false, hasError.addError = false"

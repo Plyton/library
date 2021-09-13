@@ -5,10 +5,18 @@
     justify-content: center;
     flex-direction: column;
     flex-basis: 50%;
+    padding: 10px;
+
+    @media (max-width: 900px) {
+        border: none;
+    }
 
     @media (max-width:@mobile) {
         flex-basis: 100%;
-        border: none;
+        align-self: center;
+        align-items: center;
+        padding: 0;
+        margin-bottom: 10px;
     }
 
     &__title {
@@ -28,7 +36,7 @@
     }
 
     .functions {
-        width: 18rem;
+        width: 20rem;
         display: flex;
         justify-content: space-between;
 

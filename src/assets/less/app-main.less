@@ -5,6 +5,8 @@
 
     @media (max-width:@mobile) {
         flex-wrap: wrap;
+        margin-bottom: 10px;
+
     }
 
     header {
@@ -14,10 +16,9 @@
         font-size: 62px;
 
         @media (max-width:@mobile) {
-            font-size: 3.3rem;
+            font-size: 30px;
             align-self: center;
-            flex-basis: 100%;
-            padding: 20px;
+            padding: 0;
         }
     }
 
@@ -26,11 +27,11 @@
         display: flex;
         position: relative;
 
-        @media (max-width:@mobile) {
-            flex: 1 0 100%;
+        @media (max-width:900px) {
             flex-wrap: wrap;
-            align-items: start;
             justify-content: center;
+            justify-content: space-around;
+            flex-direction: column-reverse
         }
     }
 

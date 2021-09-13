@@ -1,13 +1,18 @@
 .describe {
-    border-left: solid 2px darkgoldenrod;
+    border-left: solid 2px @app_color;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     flex-basis: 50%;
 
+    @media (max-width:@mobile) {
+        flex-basis: 100%;
+        border: none;
+    }
+
     &__title {
-        color: darkgoldenrod;
+        color: @app_color;
         margin-bottom: 10px;
     }
 
@@ -26,7 +31,6 @@
         width: 18rem;
         display: flex;
         justify-content: space-between;
-
 
         &--opacity {
             opacity: 0.4;

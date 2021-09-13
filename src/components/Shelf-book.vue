@@ -26,18 +26,30 @@ export default {
   }
 };
 </script>
+
 <style lang="less" scoped>
 .rotateOn {
-  padding: 0 6.1rem;
-  transform: rotate(-90deg);
-  transition: transform 0.5s ease-in-out, padding 1s ease-in;
+  transform: rotate3d(1, 1, 1, 360deg);
+  transition: transform 0.6s ease;
+  min-width: 9rem;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+  justify-content: space-around;
   z-index: 10;
+  & span {
+    writing-mode: horizontal-tb;
+  }
 }
 .rotateOff {
-  padding: 0.4rem;
-  transform: rotate(0deg);
-  transition: transform 0.5s ease-in-out, padding 1s ease-in;
+  width: 3.3rem;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  transform: rotate3d(1, 1, 1, -360deg);
+  transition: transform 0.6s ease;
   z-index: 0;
+  & span {
+    writing-mode: vertical-rl;
+  }
 }
 </style>
 

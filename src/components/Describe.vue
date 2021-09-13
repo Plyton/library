@@ -42,11 +42,6 @@ export default {
         btn: true,
         "functions--opacity": !this.description
       };
-    },
-    calcBtnEvent() {
-      this.description
-        ? ($parent.modalWindowOpen = true)
-        : ($parent.modalWindowOpen = false);
     }
   },
   methods: {

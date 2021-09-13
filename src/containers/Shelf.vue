@@ -2,21 +2,20 @@
   <li>
     <div class="shelf__book">
       <Book
-        v-for="(book, index) of shelf"
+        v-for="(book,index) of shelf"
         :key="index"
         @describe="showDescription"
         @rotate="rotateBook"
         :book="book"
       />
     </div>
-
     <div class="shelf__spec">
       <Spec
         @sortByAutor="sortBooks"
         @sortByTitle="sortBooks"
         @resetSorting="resetBooks"
         @addItem="addBook"
-        :shelfNumber="'3'"
+        :shelfNumber="'1'"
       />
     </div>
   </li>
@@ -30,41 +29,11 @@ export default {
     Book,
     Spec
   },
+  props: ["item"],
   data() {
     return {
       defaultShelf: [],
-      shelf: [
-        {
-          autor: "Борис Акунин",
-          title: '"Левиафан"',
-          publication: "2018",
-          pages: "250"
-        },
-        {
-          autor: "Жюль Верн",
-          title: '"Верн"',
-          publication: "1999",
-          pages: "408"
-        },
-        {
-          autor: "Джек Лондон",
-          title: '"Белый клык"',
-          publication: "2006",
-          pages: "533"
-        },
-        {
-          autor: "Никколо Макиавелли",
-          title: '"Государь"',
-          publication: "1555",
-          pages: "158"
-        },
-        {
-          autor: "Борис Акунин",
-          title: '"Азазель"',
-          publication: "2015",
-          pages: "248"
-        }
-      ]
+      shelf: this.item
     };
   },
   methods: {
@@ -80,7 +49,6 @@ export default {
         this.$parent.$refs.describe.description = null;
       }
     },
-
     rotateBook(book) {
       if (this.$parent.blockContentRest) {
         book.rotateOn = true;

@@ -11,7 +11,7 @@
           <input
             type="text"
             name="autor"
-            maxlength="30"
+            maxlength="20"
             placeholder="введите автора произведения"
             :value="bookInformation.autor"
             @focus="hasError.editError = false, hasError.addError = false"
@@ -24,7 +24,7 @@
           <input
             type="text"
             name="title"
-            maxlength="40"
+            maxlength="30"
             placeholder="введите название произведения"
             :value="bookInformation.title"
             @focus="hasError.editError = false, hasError.addError = false"
@@ -123,7 +123,7 @@ export default {
 
 <style lang="less" scoped>
 .addError {
-  border: 2px solid rgb(255, 0, 0);
+  border-bottom: 2px solid rgb(255, 0, 0);
 }
 </style>>
 

@@ -3,26 +3,44 @@
     flex-direction: column;
     min-height: 100%;
 
+    @media (max-width:@mobile) {
+        flex-wrap: wrap;
+    }
 
     header {
         flex: 0 0 auto;
-        color: darkgoldenrod;
+        color: @app_color;
         text-align: center;
         font-size: 62px;
+
+        @media (max-width:@mobile) {
+            font-size: 3.3rem;
+            align-self: center;
+            flex-basis: 100%;
+            padding: 20px;
+        }
     }
 
     main {
         flex: 1 0 auto;
         display: flex;
         position: relative;
+
+        @media (max-width:@mobile) {
+            flex: 1 0 100%;
+            flex-wrap: wrap;
+            align-items: start;
+            justify-content: center;
+        }
     }
 
     footer {
-        background-color: darkgoldenrod;
+        background-color: @app_color;
         padding: 30px 100px;
+        flex-basis: 100%;
 
-        &>div {
-            text-align: right;
+        @media (max-width:@mobile) {
+            padding: 20px;
         }
     }
 }

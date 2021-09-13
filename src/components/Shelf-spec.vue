@@ -2,7 +2,7 @@
   <div>
     <span class="shelf__spec-number">{{calcShelfNumber}}</span>|
     <span class="shelf__spec-autor">Автор</span>
-    <i class="fas fa-sort-amount-up-alt pointer scale" @click="$emit('sortByAutor', 'autor')"></i>
+    <i class="fas fa-sort-amount-up-alt pointer scale" @click="$emit('sortByAutor', 'autor')"></i>|
     <span class="shelf__spec-title">Название</span>
     <i class="fas fa-sort-amount-up-alt pointer scale" @click="$emit('sortByTitle', 'title')"></i>|
     <span class="shelf__spec-reset">Сброс</span>

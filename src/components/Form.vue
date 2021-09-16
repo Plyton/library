@@ -65,7 +65,7 @@
 
 <script>
 export default {
-  props: ["value"],
+  props: { value: { type: String} },
   data() {
     return {
       defaultBookShelf: null,

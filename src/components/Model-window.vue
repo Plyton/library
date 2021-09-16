@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  props: ["value"],
+  props: { value: { type: String } },
   computed: {
     calcWrapClass() {
       return this.value ? "modal-window" : "display-no";

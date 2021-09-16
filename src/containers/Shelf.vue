@@ -15,7 +15,7 @@
         @sortByTitle="sortBooks"
         @resetSorting="resetBooks"
         @addItem="addBook"
-        :isMobile="isMobile"
+        :isMobile="IS_MOBILE"
         :shelfNumber="'1'"
       />
     </div>
@@ -25,20 +25,27 @@
 <script>
 import Book from "../components/Shelf-book";
 import Spec from "../components/Shelf-spec";
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     Book,
     Spec
   },
-  props: ["item"],
+  props: {
+    item: {
+      type: Array,
+      required: true
+    }
+  },
   data() {
     return {
-      isMobile: false,
       defaultShelf: [],
-      shelf: this.item
+      shelf: [...this.item]
     };
   },
+  computed: { ...mapGetters(["IS_MOBILE"]) },
   methods: {
+    ...mapActions(["SET_MOBILE"]),
     showDescription(book, animation) {
       if (this.$parent.blockContentRest) {
         this.$parent.$refs.describe.description = {
@@ -61,6 +68,7 @@ export default {
       }
     },
     sortBooks(sortBy) {
+      debugger;
       if (sortBy == "autor") {
         return this.shelf.sort((a, b) => {
           if (a.autor > b.autor) {
@@ -104,7 +112,9 @@ export default {
   created() {
     if (process.browser) {
       window.addEventListener("resize", this.onResize);
-      this.isMobile = document.documentElement.clientWidth > 600 ? false : true;
+      if (document.documentElement.clientWidth < 600) {
+        this.SET_MOBILE();
+      }
     }
   },
   mounted() {

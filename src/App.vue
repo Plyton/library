@@ -10,10 +10,15 @@
       <section class="shelf">
         <div :class="{'block-div': blockContentRest}"></div>
         <ul class="shelf__container">
-          <Shelf v-for="(shelf, index) of shelves" :key="index" :item="shelf" />
+          <BookShelf
+            v-for="(shelf, index) of shelves"
+            :key="index"
+            :shlef-item="shelf"
+            :shelf-number="index+1"
+          />
         </ul>
       </section>
-      <Describe ref="describe" />
+      <BooksDescription ref="describe" />
     </main>
     <footer></footer>
   </div>
@@ -22,15 +27,15 @@
 <script>
 import ModelWindow from "./components/Model-window";
 import Form from "./components/Form";
-import Shelf from "./containers/Shelf";
-import Describe from "./components/Describe";
+import BookShelf from "./containers/BookShelf";
+import BooksDescription from "./components/BooksDescription";
 export default {
-  name: "main-layout",
+  name: "App",
   components: {
-    Shelf,
+    BookShelf,
     "Model-window": ModelWindow,
     Form,
-    Describe
+    BooksDescription
   },
   data() {
     return {

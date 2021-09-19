@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  name: "BookShelfItem",
   props: {
     book: { type: Object, required: true }
   },

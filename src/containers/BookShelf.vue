@@ -1,49 +1,102 @@
 <template>
   <li>
     <div class="shelf__book">
-      <Book
+      <BookShelfItem
         v-for="(book,index) of shelf"
         :key="index"
+        :book="book"
         @describe="showDescription"
         @rotate="rotateBook"
-        :book="book"
       />
     </div>
     <div class="shelf__spec">
-      <Spec
-        @sortByAutor="sortBooks"
-        @sortByTitle="sortBooks"
-        @resetSorting="resetBooks"
-        @addItem="addBook"
-        :isMobile="IS_MOBILE"
-        :shelfNumber="'1'"
+      <BookShelfCell
+        v-for="item of cellSettings"
+        :key="item.key"
+        :cell="item"
+        :mobile-version="IS_MOBILE"
+        :shelf-number="shelfNumber"
+        @sort="sortBooks"
+        @reset="resetBooks"
+        @add="addBook"
       />
     </div>
   </li>
 </template>
 
 <script>
-import Book from "../components/Shelf-book";
-import Spec from "../components/Shelf-spec";
+import BookShelfItem from "../components/BookShelfItem";
+import BookShelfCell from "../components/BookShelfCell";
 import { mapActions, mapGetters } from "vuex";
 export default {
+  name: "BookShelf",
   components: {
-    Book,
-    Spec
+    BookShelfItem,
+    BookShelfCell
   },
   props: {
-    item: {
+    shlefItem: {
       type: Array,
+      required: true
+    },
+    shelfNumber: {
+      type: [String, Number],
       required: true
     }
   },
   data() {
     return {
+      cellSettings: [
+        {
+          key: "0",
+          class: "",
+          sortable: "",
+          title: "Полка"
+        },
+        {
+          key: "1",
+          class: "fas fa-sort-amount-up-alt pointer scale",
+          sortable: "sort",
+          title: "Автор"
+        },
+        {
+          key: "2",
+          class: "fas fa-sort-amount-up-alt scale",
+          sortable: "sort",
+          title: "Название"
+        },
+        {
+          key: "3",
+          class: "fas fa-trash-restore-alt pointer scale",
+          sortable: "reset",
+          title: "Сброс"
+        },
+        {
+          key: "4",
+          class: "fas fa-plus shelf__spec-add pointer scale",
+          sortable: "add",
+          title: "Добавить"
+        }
+      ],
       defaultShelf: [],
-      shelf: [...this.item]
+      shelf: [...this.shlefItem]
     };
   },
   computed: { ...mapGetters(["IS_MOBILE"]) },
+  created() {
+    if (process.browser) {
+      window.addEventListener("resize", this.onResize);
+      if (document.documentElement.clientWidth < 600) {
+        this.SET_MOBILE();
+      }
+    }
+  },
+  mounted() {
+    this.defaultShelf = [...this.shelf];
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.onResize);
+  },
   methods: {
     ...mapActions(["SET_MOBILE"]),
     showDescription(book, animation) {
@@ -69,7 +122,7 @@ export default {
     },
     sortBooks(sortBy) {
       debugger;
-      if (sortBy == "autor") {
+      if (sortBy == "Автор") {
         return this.shelf.sort((a, b) => {
           if (a.autor > b.autor) {
             return 1;
@@ -80,7 +133,7 @@ export default {
           return 0;
         });
       }
-      if (sortBy == "title") {
+      if (sortBy == "Название") {
         return this.shelf.sort((a, b) => {
           if (a.title > b.title) {
             return 1;
@@ -108,20 +161,6 @@ export default {
       this.$parent.$refs.form.hasError.addError = false;
       this.$parent.formOpen = true;
     }
-  },
-  created() {
-    if (process.browser) {
-      window.addEventListener("resize", this.onResize);
-      if (document.documentElement.clientWidth < 600) {
-        this.SET_MOBILE();
-      }
-    }
-  },
-  mounted() {
-    this.defaultShelf = [...this.shelf];
-  },
-  beforeDestroy() {
-    window.removeEventListener("resize", this.onResize);
   }
 };
 </script>
